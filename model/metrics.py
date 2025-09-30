@@ -1,6 +1,11 @@
+# metrics.py
 import fastai.vision.all as fv
 import torch
 from fastai.learner import Metric
+
+# =======================
+# Métricas fastai (tuyas)
+# =======================
 
 class MeanIoU(Metric):
     def __init__(self, num_classes:int):
@@ -27,14 +32,11 @@ class MeanIoU(Metric):
     def name(self):
         return "mIoU"
 
-    
 class PerClassIoU(Metric):
     """
     Métrica que calcula IoU (Intersection over Union) por clase.
-    
     Devuelve un tensor de tamaño [num_classes] con el IoU de cada clase.
     """
-
     def __init__(self, num_classes:int, ignore_index=None):
         self.num_classes = num_classes
         self.ignore_index = ignore_index
@@ -82,12 +84,50 @@ class PerClassIoU(Metric):
 def seg_accuracy(yp, y):
     """
     Calculates segmentation accuracy.
-
-    Parameters:
-    - `yp` (Tensor): Predicted tensor.
-    - `y` (Tensor): Ground truth tensor.
-
-    Returns:
-    - `float`: The accuracy of the segmentation.
     """
     return fv.accuracy(yp, y, axis=1)
+
+# =========================================
+# Funciones PyTorch puras para el runner 🤝
+# =========================================
+
+def iou_per_class(pred: torch.Tensor, target: torch.Tensor, num_classes: int,
+                  ignore_index: int | None = None, eps: float = 1e-7) -> torch.Tensor:
+    """
+    Calcula IoU por clase en tensores (PyTorch puro).
+    - pred: logits [N,C,H,W] o etiquetas predichas [N,H,W]
+    - target: etiquetas verdaderas [N,H,W]
+    Devuelve: tensor [num_classes] con IoU por clase (NaN si no hay píxeles de esa clase).
+    """
+    # Si vienen logits, convertir a etiquetas
+    if pred.ndim == 4:  # [N, C, H, W]
+        pred = pred.argmax(dim=1)
+
+    # Aplanar
+    pred = pred.view(-1)
+    target = target.view(-1)
+
+    if ignore_index is not None:
+        valid = target != ignore_index
+        pred = pred[valid]
+        target = target[valid]
+
+    ious = torch.empty(num_classes, dtype=torch.float32)
+    for c in range(num_classes):
+        if ignore_index is not None and c == ignore_index:
+            ious[c] = torch.nan
+            continue
+        p = (pred == c)
+        t = (target == c)
+        inter = (p & t).sum().float()
+        union = (p | t).sum().float()
+        ious[c] = inter / (union + eps) if union > 0 else torch.nan
+    return ious
+
+def mean_iou(pred: torch.Tensor, target: torch.Tensor, num_classes: int,
+             ignore_index: int | None = None) -> torch.Tensor:
+    """
+    mIoU = media de iou_per_class ignorando NaNs.
+    """
+    per_cls = iou_per_class(pred, target, num_classes, ignore_index)
+    return torch.nanmean(per_cls)
