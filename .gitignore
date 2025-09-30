@@ -1,0 +1,8 @@
+/img_mask
+/img_data
+imagen
+data
+.history
+/model/models
+/model/results
+*.npz

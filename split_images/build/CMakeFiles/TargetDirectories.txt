@@ -1,0 +1,16 @@
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/CMakeFiles/tile_raster.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/CMakeFiles/edit_cache.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/CMakeFiles/rebuild_cache.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/CMakeFiles/list_install_components.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/CMakeFiles/install.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/CMakeFiles/install/local.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/CMakeFiles/install/strip.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/cnpy.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/cnpy-static.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/example1.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/edit_cache.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/rebuild_cache.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/list_install_components.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/install.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/install/local.dir
+/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy/CMakeFiles/install/strip.dir

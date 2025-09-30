@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=c++11 -rdynamic -Wl,--dependency-file=CMakeFiles/example1.dir/link.d CMakeFiles/example1.dir/example1.cpp.o -o example1  -Wl,-rpath,/home/gomosak/conafor_archivo/segmentacion/cnn/split_images/build/cnpy libcnpy.so -lz

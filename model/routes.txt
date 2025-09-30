@@ -1,0 +1,1 @@
+/home/gomosak/conafor_archivo/segmentacion/cnn
